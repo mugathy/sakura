@@ -8,8 +8,7 @@
    à-la-carte prices, the printed All-You-Can-Eat order sheet for buffet
    pricing, and the Google listing for the rating.
 
-   ⚠ Two things are still unconfirmed, marked TODO: the email address and the
-   Instagram handle. See also the LUNCH note on the buffet prices below.
+   ⚠ One thing is still unconfirmed, marked TODO: the email address.
    ═══════════════════════════════════════════════════════════════════════ */
 window.SAKURA = {
   name:    'Sakura Japanese Restaurant',
@@ -30,12 +29,12 @@ window.SAKURA = {
   hours:   'Mon  Closed\nTue – Thu  11:30 AM – 10:00 PM\nFri – Sat  11:30 AM – 10:30 PM\nSun  12:30 PM – 10:00 PM',
 
   /* ── ALL-YOU-CAN-EAT, from the printed order sheet ────────────────────
-     TODO the sheet also shows a LUNCH price of $13.95 — confirm whether that
-     is a separate lunch rate or the under-10 rate, and add a lunch row here
-     if it is its own price. */
+     $13.95 is the LUNCH rate for under-10s (owner confirmed), so it is
+     labelled "Under 10 · lunch" on the page rather than presented as an
+     all-day price. */
   ayceAdult:      '$21.95',
   ayceChild:      '$15.95',
-  ayceUnder10:    '$13.95',
+  ayceUnder10:    '$13.95',   // lunch rate, under 10
   deluxeAdult:    '$31.95',
   deluxeChild:    '$24.95',
   deluxeUnder10:  '$16.95',
@@ -55,7 +54,6 @@ window.SAKURA = {
 
   /* ── TODO confirm with the restaurant ─────────────────────────────── */
   email:   'info@sakurawinchesterma.com',        // TODO real address
-  ig:      'https://instagram.com/',             // TODO real handle
 
   /* ── fine print ───────────────────────────────────────────────────── */
   allergyNote: 'Please tell your server before ordering if anyone in your party has a food allergy.',
@@ -79,7 +77,6 @@ window.SAKURA = {
     tel:      'tel:' + String(S.phone).replace(/[^\d+]/g, ''),
     mail:     'mailto:' + S.email,
     map:      S.map,
-    ig:       S.ig,
     web:      S.web,
     order:    S.order,
     checkout: S.checkout,

@@ -1176,7 +1176,7 @@ html.is-locked{overflow:hidden}
       <dl class="tiers">
         <div><dt>Adults</dt><dd data-site="ayceAdult"></dd></div>
         <div><dt>Child 10–12</dt><dd data-site="ayceChild"></dd></div>
-        <div><dt>Under 10</dt><dd data-site="ayceUnder10"></dd></div>
+        <div><dt>Under 10 · lunch</dt><dd data-site="ayceUnder10"></dd></div>
       </dl>
       <footer><span>Dine in</span><span>·</span><span>Order in rounds</span></footer>
     </article>
@@ -1522,7 +1522,7 @@ html.is-locked{overflow:hidden}
     <div><h5>Visit</h5><p data-site="address"></p></div>
     <div><h5>Hours</h5><p data-site="hours"></p></div>
     <div><h5>Contact</h5><p><a data-site-href="tel" href="#" data-cursor="link"><span data-site="phone"></span></a><br><a data-site-href="mail" href="#" data-cursor="link"><span data-site="email"></span></a></p></div>
-    <div><h5>Online</h5><p><a data-site-href="web" href="#" target="_blank" rel="noopener" data-cursor="link"><span data-site="webLabel"></span> ↗</a><br><a data-site-href="ig" href="#" target="_blank" rel="noopener" data-cursor="link">Instagram ↗</a></p></div>
+    <div><h5>Online</h5><p><a href="menu.html" data-cursor="link">Full menu</a><br><a data-site-href="web" href="#" target="_blank" rel="noopener" data-cursor="link"><span data-site="webLabel"></span> ↗</a></p></div>
   </div>
   <div class="foot__base">
     <span>© <span id="yr"></span> Sakura Japanese Restaurant, Winchester MA.</span>
@@ -1544,8 +1544,7 @@ html.is-locked{overflow:hidden}
    à-la-carte prices, the printed All-You-Can-Eat order sheet for buffet
    pricing, and the Google listing for the rating.
 
-   ⚠ Two things are still unconfirmed, marked TODO: the email address and the
-   Instagram handle. See also the LUNCH note on the buffet prices below.
+   ⚠ One thing is still unconfirmed, marked TODO: the email address.
    ═══════════════════════════════════════════════════════════════════════ */
 window.SAKURA = {
   name:    'Sakura Japanese Restaurant',
@@ -1566,12 +1565,12 @@ window.SAKURA = {
   hours:   'Mon  Closed\nTue – Thu  11:30 AM – 10:00 PM\nFri – Sat  11:30 AM – 10:30 PM\nSun  12:30 PM – 10:00 PM',
 
   /* ── ALL-YOU-CAN-EAT, from the printed order sheet ────────────────────
-     TODO the sheet also shows a LUNCH price of $13.95 — confirm whether that
-     is a separate lunch rate or the under-10 rate, and add a lunch row here
-     if it is its own price. */
+     $13.95 is the LUNCH rate for under-10s (owner confirmed), so it is
+     labelled "Under 10 · lunch" on the page rather than presented as an
+     all-day price. */
   ayceAdult:      '$21.95',
   ayceChild:      '$15.95',
-  ayceUnder10:    '$13.95',
+  ayceUnder10:    '$13.95',   // lunch rate, under 10
   deluxeAdult:    '$31.95',
   deluxeChild:    '$24.95',
   deluxeUnder10:  '$16.95',
@@ -1591,7 +1590,6 @@ window.SAKURA = {
 
   /* ── TODO confirm with the restaurant ─────────────────────────────── */
   email:   'info@sakurawinchesterma.com',        // TODO real address
-  ig:      'https://instagram.com/',             // TODO real handle
 
   /* ── fine print ───────────────────────────────────────────────────── */
   allergyNote: 'Please tell your server before ordering if anyone in your party has a food allergy.',
@@ -1615,7 +1613,6 @@ window.SAKURA = {
     tel:      'tel:' + String(S.phone).replace(/[^\d+]/g, ''),
     mail:     'mailto:' + S.email,
     map:      S.map,
-    ig:       S.ig,
     web:      S.web,
     order:    S.order,
     checkout: S.checkout,
