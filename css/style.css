@@ -332,7 +332,7 @@ ul,ol{list-style:none;padding:0;margin:0}
 .courses{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,1.6vw,22px)}
 .course{
   position:relative;background:rgba(255,255,255,.6);border:1px solid var(--line-light);border-radius:20px;
-  padding:clamp(24px,2.6vw,38px);display:grid;gap:16px;align-content:start;overflow:hidden;isolation:isolate;
+  padding:clamp(24px,2.6vw,38px);display:flex;flex-direction:column;gap:16px;overflow:hidden;isolation:isolate;
   transition:transform var(--t-4) var(--ease-entrance),box-shadow var(--t-4) var(--ease-soft),border-color var(--t-4) var(--ease-soft),color var(--t-4) var(--ease-soft);
 }
 .course::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(160deg,#17161a,#2b1f22);border-radius:inherit;clip-path:circle(0% at 50% 100%);transition:clip-path var(--t-2) var(--ease-morph)}
@@ -347,6 +347,16 @@ ul,ol{list-style:none;padding:0;margin:0}
 .course p{font-size:14.5px;line-height:1.7;color:inherit;opacity:.78}
 .course footer{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 9px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.62;transition:color var(--t-4) var(--ease-soft)}
 .course footer span{white-space:nowrap}
+/* buttons sit at the base of the card, so a shorter card still lines up */
+.course__cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:auto;padding-top:4px}
+.course__cta .btn{padding:13px 24px}
+/* outlined in the card's own text colour, so it stays legible when the card
+   inverts to dark on hover */
+.btn--line{border-color:currentColor;color:inherit}
+.btn--line::before{background:currentColor}
+.btn--line:hover{color:var(--washi)}
+.course:hover .btn--line:hover{color:var(--ink)}
+
 .course--feature{background:linear-gradient(160deg,rgba(178,34,43,.06),rgba(240,183,193,.1));border-color:rgba(178,34,43,.25)}
 
 /* the price grid inside each buffet card */
