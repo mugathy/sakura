@@ -534,7 +534,7 @@ ul,ol{list-style:none;padding:0;margin:0}
 /* ── SPECIAL ROLLS CAROUSEL ───────────────────────────────────────────────
    Five rolls in view at a time, stepping one card along on a timer and
    looping seamlessly through all twenty-three.                            */
-.rollcar{position:relative;width:100%;min-width:0;max-width:100%;margin:0 auto;--per:5;--rgap:14px}
+.rollcar{position:relative;width:100%;min-width:0;max-width:1040px;margin:0 auto;--per:3;--rgap:14px}
 .rollcar__viewport{overflow:hidden;padding:2px}
 .rollcar__track{display:flex;gap:var(--rgap);will-change:transform;
   transition:transform var(--t-1) var(--ease-entrance)}
@@ -572,8 +572,6 @@ ul,ol{list-style:none;padding:0;margin:0}
 .rollcar__nav button:hover{background:var(--urushi);color:var(--washi);border-color:transparent;transform:scale(1.07)}
 .rollcar__count{flex:0 0 auto;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-38)}
 
-@media (max-width:1180px){ .rollcar{--per:4} }
-@media (max-width:940px){  .rollcar{--per:3} }
 @media (max-width:680px){
   .rollcar{--per:3;--rgap:9px}
   .rcard__desc{display:none}
