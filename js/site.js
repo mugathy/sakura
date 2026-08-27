@@ -18,7 +18,7 @@ window.SAKURA = {
   phone:   '(781) 721-4608',
   web:     'https://www.sakurawinchesterma.com',
   webLabel:'sakurawinchesterma.com',
-  order:   'menu.html',                            // our own menu page
+  order:   'https://www.sakurawinchesterma.com/menu',  // the restaurant's own menu
   checkout:'https://www.sakurawinchesterma.com/order',  // the live ordering system
   location:'https://www.sakurawinchesterma.com/locationinfo',
   contact: 'https://www.sakurawinchesterma.com/contact',

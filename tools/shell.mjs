@@ -2,9 +2,11 @@
    Used by build-menu.mjs and build-pages.mjs so the navigation only has to be
    corrected in one place. index.html is hand-written and mirrors this. */
 
+export const MENU = 'https://www.sakurawinchesterma.com/menu';
+
 export const NAV_LINKS = [
   ['index.html#about',   'About'],
-  ['menu.html',          'Menu'],
+  [MENU,                 'Menu'],
   ['index.html#menu',    'All you can eat'],
   ['location.html',      'Find us'],
   ['contact.html',       'Contact']
@@ -46,7 +48,7 @@ ${social}
 export function nav(current) {
   const links = NAV_LINKS
     .filter(([href]) => href !== current)
-    .map(([href, label]) => `    <a href="${href}" data-cursor="link">${label}</a>`)
+    .map(([href, label]) => `    <a href="${href}"${href.startsWith('http') ? ' target="_blank" rel="noopener"' : ''} data-cursor="link">${label}</a>`)
     .join('\n');
   return `<header class="nav is-solid" id="nav">
   <a class="nav__brand" href="index.html" data-cursor="link">
@@ -66,7 +68,7 @@ ${links}
   <div class="overlay__bg"></div>
   <nav class="overlay__nav">
     <a href="index.html"><em>01</em><span>Home</span></a>
-    <a href="menu.html"><em>02</em><span>Menu</span></a>
+    <a href="${MENU}" target="_blank" rel="noopener"><em>02</em><span>Menu</span></a>
     <a href="index.html#menu"><em>03</em><span>All you can eat</span></a>
     <a href="location.html"><em>04</em><span>Find us</span></a>
     <a href="contact.html"><em>05</em><span>Contact</span></a>
@@ -84,7 +86,7 @@ export function foot() {
     <div><h5>Visit</h5><p data-site="address"></p></div>
     <div><h5>Hours</h5><p data-site="hours"></p></div>
     <div><h5>Contact</h5><p><a data-site-href="tel" href="#" data-cursor="link"><span data-site="phone"></span></a><br><a data-site-href="mail" href="#" data-cursor="link"><span data-site="email"></span></a></p></div>
-    <div><h5>Online</h5><p><a href="menu.html" data-cursor="link">Full menu</a><br><a data-site-href="checkout" href="#" target="_blank" rel="noopener" data-cursor="link">Checkout ↗</a></p></div>
+    <div><h5>Online</h5><p><a href="${MENU}" target="_blank" rel="noopener" data-cursor="link">Full menu</a><br><a data-site-href="checkout" href="#" target="_blank" rel="noopener" data-cursor="link">Checkout ↗</a></p></div>
   </div>
   <div class="foot__base">
     <span>© <span id="yr"></span> Sakura Japanese Restaurant, Winchester MA.</span>

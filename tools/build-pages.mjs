@@ -2,7 +2,7 @@
    Re-run after editing:  node tools/build-pages.mjs                         */
 import fs from 'node:fs';
 import path from 'node:path';
-import { head, nav, foot, SCRIPTS } from './shell.mjs';
+import { head, nav, foot, SCRIPTS, MENU } from './shell.mjs';
 
 const root = path.dirname(path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1')));
 
@@ -45,7 +45,7 @@ ${hero('ご来店 — FIND US', 'VISIT', 'We are on Main Street in Winchester. E
       </dl>
       <div class="pcta">
         <a class="btn btn--solid" data-site-href="tel" href="#" data-cursor="link"><span>Call the restaurant</span></a>
-        <a class="btn btn--ghost" href="menu.html" data-cursor="link"><span>See the menu</span></a>
+        <a class="btn btn--ghost" href="${MENU}" target="_blank" rel="noopener" data-cursor="link"><span>See the menu</span></a>
       </div>
     </div>
 
@@ -54,7 +54,7 @@ ${hero('ご来店 — FIND US', 'VISIT', 'We are on Main Street in Winchester. E
       <p class="phours" data-site="hours"></p>
       <p class="pnote"><b data-site="delivery"></b><br>Kitchen orders are taken until closing; the sushi bar stops a little earlier on busy nights, so call ahead if you are cutting it fine.</p>
       <h2 class="pcol__h pcol__h--sub">Dining in</h2>
-      <p class="pnote">Dining in is all-you-can-eat from the order sheet — <a href="index.html#menu" data-cursor="link">see the buffet pricing</a>. The à la carte list on <a href="menu.html" data-cursor="link">the menu page</a> is what we cook for takeout and delivery.</p>
+      <p class="pnote">Dining in is all-you-can-eat from the order sheet — <a href="index.html#menu" data-cursor="link">see the buffet pricing</a>. The à la carte list on <a href="${MENU}" target="_blank" rel="noopener" data-cursor="link">the menu page</a> is what we cook for takeout and delivery.</p>
     </div>
   </div>
 
@@ -94,7 +94,7 @@ ${hero('お問い合わせ — CONTACT', 'CONTACT', 'The fastest way to reach us
         <div><dt>Address</dt><dd data-site="address"></dd></div>
         <div><dt>Hours</dt><dd data-site="hours"></dd></div>
       </dl>
-      <p class="pnote">Ordering food? <a href="menu.html" data-cursor="link">The menu</a> takes your order and hands it to us by phone or email.</p>
+      <p class="pnote">Ordering food? <a href="${MENU}" target="_blank" rel="noopener" data-cursor="link">The menu</a> is on the restaurant’s own site.</p>
     </div>
 
     <form class="form form--light" id="resForm" data-anim="veil" novalidate>
