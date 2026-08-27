@@ -406,7 +406,6 @@ ul,ol{list-style:none;padding:0;margin:0}
 .craft__step{max-width:400px;pointer-events:auto;display:grid;gap:10px}
 .craft__step:nth-child(odd){justify-self:start}
 .craft__step:nth-child(even){justify-self:end;text-align:right}
-.craft__stepshot{display:none}
 .craft__step em{font-family:var(--jp);font-style:normal;font-size:28px;color:var(--sakura)}
 .craft__step h3{font-family:var(--display);font-weight:400;font-size:clamp(28px,3.6vw,46px);letter-spacing:-.01em}
 .craft__step p{color:var(--paper-70);font-size:15px;line-height:1.75}
@@ -950,12 +949,9 @@ dl.info--light dd a:hover{color:var(--urushi);border-color:var(--urushi)}
   .hero__sub{max-width:14em}
   .plate{top:17%;bottom:auto;right:auto;left:50%;transform:translate(-50%,-30%) translate3d(0,var(--py,0px),0);width:min(52vw,240px)}
   .hero__scroll{display:none}
-  .craft__sticky{display:none}
-  .craft__steps{margin-top:0;gap:clamp(48px,9vh,80px)}
-  .craft__step{max-width:none;justify-self:stretch}
-  .craft__step:nth-child(even){justify-self:stretch;text-align:left}
-  .craft__stepshot{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;
-    border-radius:16px;margin-bottom:14px}
+  .craft__steps{margin-top:-64svh;gap:52svh}
+  .craft__step:nth-child(even){justify-self:start;text-align:left}
+  .craft__media{width:min(420px,78vw)}
   .foot__base{flex-direction:column}
   .form__row{grid-template-columns:1fr}
   .band{padding-top:44px}
