@@ -24,7 +24,7 @@ const hero = (eyebrow, title, lead) => `
 
 /* ── Find us ─────────────────────────────────────────────────────────────── */
 const location = `${head('Find us — Sakura Japanese Restaurant, Winchester MA',
-  'Sakura Japanese Restaurant, 910 Main St, Winchester MA. Opening hours, delivery times, parking and directions.')}
+  'Opening hours, address and directions for Sakura Japanese Restaurant, 910 Main St, Winchester MA. Dine in, takeout and delivery. (781) 721-4608.', 'location.html')}
 <body class="menupage">
 <a class="skip" href="#main">Skip to content</a>
 <div class="cursor" id="cursor" aria-hidden="true"><i></i><b></b></div>
@@ -75,7 +75,7 @@ ${SCRIPTS}
 
 /* ── Contact ─────────────────────────────────────────────────────────────── */
 const contact = `${head('Contact — Sakura Japanese Restaurant, Winchester MA',
-  'Call, email or send a table request to Sakura Japanese Restaurant in Winchester, MA.')}
+  'Call, email or request a table at Sakura Japanese Restaurant, 910 Main St, Winchester MA. (781) 721-4608.', 'contact.html')}
 <body class="menupage">
 <a class="skip" href="#main">Skip to content</a>
 <div class="cursor" id="cursor" aria-hidden="true"><i></i><b></b></div>

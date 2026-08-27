@@ -367,7 +367,8 @@ ul,ol{list-style:none;padding:0;margin:0}
 .rider p b{display:block;color:var(--urushi);font-weight:600}
 .course__flag{position:absolute;top:16px;right:16px;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;background:var(--urushi);color:var(--washi);padding:5px 11px;border-radius:100px}
 
-.neta{max-width:var(--maxw);margin:clamp(56px,8vw,96px) auto 0;display:grid;gap:26px}
+.neta{max-width:var(--maxw);margin:clamp(56px,8vw,96px) auto 0;display:grid;
+  grid-template-columns:minmax(0,1fr);gap:26px}
 .neta__grid{display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(10px,1.2vw,18px)}
 .neta__item{display:grid;gap:6px;padding:18px 14px 20px;border-radius:16px;background:rgba(255,255,255,.5);border:1px solid var(--line-light);text-align:center;transition:transform var(--t-4) var(--ease-entrance),background var(--t-4) var(--ease-soft)}
 .neta__item:hover{transform:translateY(-6px) scale(1.02);background:#fff}
@@ -501,7 +502,7 @@ ul,ol{list-style:none;padding:0;margin:0}
 /* ── SPECIAL ROLLS CAROUSEL ───────────────────────────────────────────────
    Five rolls in view at a time, stepping one card along on a timer and
    looping seamlessly through all twenty-three.                            */
-.rollcar{position:relative;width:100%;max-width:var(--maxw);margin:0 auto;--per:5;--rgap:14px}
+.rollcar{position:relative;width:100%;min-width:0;max-width:100%;margin:0 auto;--per:5;--rgap:14px}
 .rollcar__viewport{overflow:hidden;padding:2px}
 .rollcar__track{display:flex;gap:var(--rgap);will-change:transform;
   transition:transform var(--t-1) var(--ease-entrance)}
@@ -541,7 +542,13 @@ ul,ol{list-style:none;padding:0;margin:0}
 
 @media (max-width:1180px){ .rollcar{--per:4} }
 @media (max-width:940px){  .rollcar{--per:3} }
-@media (max-width:680px){  .rollcar{--per:2} .rcard__desc{display:none} }
+@media (max-width:680px){
+  .rollcar{--per:3;--rgap:9px}
+  .rcard__desc{display:none}
+  .rcard__name{font-size:12px;line-height:1.25}
+  .rcard__kind{font-size:7.5px;padding:3px 6px;top:6px;left:6px}
+  .rcard__media{border-radius:10px}
+}
 @media (prefers-reduced-motion:reduce){
   .rollcar__track{transition:none}
   .rollcar__bar{display:none}

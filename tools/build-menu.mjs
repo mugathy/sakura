@@ -4,7 +4,7 @@
    after editing data/menu.json:  node tools/build-menu.mjs                  */
 import fs from 'node:fs';
 import path from 'node:path';
-import { nav as shellNav } from './shell.mjs';
+import { nav as shellNav, head as shellHead } from './shell.mjs';
 
 const root = path.dirname(path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1')));
 const data = JSON.parse(fs.readFileSync(path.join(root, 'data', 'menu.json'), 'utf8'));
@@ -89,20 +89,10 @@ ${rows}
     </section>`;
 }).join('\n\n');
 
-const html = `<!doctype html>
-<html lang="en" class="no-js" data-quality="high">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0b0b0d">
-<title>Menu — Sakura Japanese Restaurant, Winchester MA</title>
-<meta name="description" content="The full Sakura menu: ${totalDishes} dishes across ${sections.length} sections — sushi, rolls, hibachi, teriyaki, udon, lunch boxes and party boats. Dine in all-you-can-eat, or order takeout and delivery.">
-
-<!--  GENERATED FILE — do not hand-edit.
-      Edit data/menu.json, then run:  node tools/build-menu.mjs             -->
-
-<link rel="stylesheet" href="css/style.css">
-</head>
+const html = `${shellHead(
+  'Menu — Sakura Japanese Restaurant, Winchester MA',
+  `The full Sakura menu: ${totalDishes} dishes across ${sections.length} sections — sushi, rolls, nigiri, hibachi, teriyaki, udon, lunch boxes and party boats. Takeout and delivery in Winchester, MA.`,
+  'menu.html')}
 <body class="menupage">
 
 <a class="skip" href="#menuMain">Skip to the menu</a>
