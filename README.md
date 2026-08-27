@@ -38,9 +38,6 @@ white tuna and yellowtail with scallion.
 ---
 
 <details>
-<summary>Updating the site</summary>
-
-Edit the files, then:
 
 ```bash
 git add -A && git commit -m "what changed" && git push
