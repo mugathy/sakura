@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="en" class="no-js" data-quality="high">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b0b0d">
+<title>Sakura Japanese Restaurant — Winchester, MA</title>
+<meta name="description" content="All-you-can-eat sushi in Winchester, MA. Sakura Japanese Restaurant, 910 Main St — maki, hand rolls, nigiri, sashimi and a full kitchen menu, from $13.95. Dine in, takeout and delivery.">
+
+<!--
+  ════════════════════════════════════════════════════════════════════
+  EDIT ME — every real-world detail lives in ONE place: js/site.js
+  (address, phone, hours, prices, email, socials, map link).
+  Change it there and it updates everywhere on this page.
+  ════════════════════════════════════════════════════════════════════
+-->
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ══ velocity-driven directional motion-blur filters.
+     Quantised into 6 steps per axis and swapped by class, so we never
+     rebuild a filter primitive mid-frame (that is what makes blur cheap). ══ -->
+<svg class="mb-defs" aria-hidden="true" focusable="false"><defs>
+  <linearGradient id="gaRice" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fffaf1"/><stop offset="100%" stop-color="#e3d7c0"/></linearGradient>
+  <linearGradient id="gaSalmon" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ffb489"/><stop offset="60%" stop-color="#f4854f"/><stop offset="100%" stop-color="#d95f36"/></linearGradient>
+  <linearGradient id="gaTuna" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e8697a"/><stop offset="60%" stop-color="#c8384c"/><stop offset="100%" stop-color="#93202f"/></linearGradient>
+  <linearGradient id="gaBoard" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#8a6440"/><stop offset="50%" stop-color="#6d4c2f"/><stop offset="100%" stop-color="#553a23"/></linearGradient>
+  <linearGradient id="gaBatter" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f6d38f"/><stop offset="100%" stop-color="#d69a45"/></linearGradient>
+  <linearGradient id="gaBroth" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#c9a35e"/><stop offset="100%" stop-color="#8f6c34"/></linearGradient>
+  <linearGradient id="gaBowl" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#2f2a33"/><stop offset="100%" stop-color="#171319"/></linearGradient>
+  <radialGradient id="gaGloss" cx="35%" cy="28%"><stop offset="0%" stop-color="rgba(255,255,255,.5)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/></radialGradient>
+</defs></svg>
+
+<svg class="mb-defs" aria-hidden="true" focusable="false"><defs>
+  <filter id="mb-y-1" x="-20%" y="-40%" width="140%" height="180%"><feGaussianBlur stdDeviation="0 0.7"/></filter>
+  <filter id="mb-y-2" x="-20%" y="-40%" width="140%" height="180%"><feGaussianBlur stdDeviation="0 1.6"/></filter>
+  <filter id="mb-y-3" x="-20%" y="-40%" width="140%" height="180%"><feGaussianBlur stdDeviation="0 3"/></filter>
+  <filter id="mb-y-4" x="-20%" y="-40%" width="140%" height="180%"><feGaussianBlur stdDeviation="0 5"/></filter>
+  <filter id="mb-y-5" x="-20%" y="-40%" width="140%" height="180%"><feGaussianBlur stdDeviation="0 7.5"/></filter>
+  <filter id="mb-y-6" x="-20%" y="-40%" width="140%" height="180%"><feGaussianBlur stdDeviation="0 11"/></filter>
+  <filter id="mb-x-1" x="-40%" y="-20%" width="180%" height="140%"><feGaussianBlur stdDeviation="0.7 0"/></filter>
+  <filter id="mb-x-2" x="-40%" y="-20%" width="180%" height="140%"><feGaussianBlur stdDeviation="1.6 0"/></filter>
+  <filter id="mb-x-3" x="-40%" y="-20%" width="180%" height="140%"><feGaussianBlur stdDeviation="3 0"/></filter>
+  <filter id="mb-x-4" x="-40%" y="-20%" width="180%" height="140%"><feGaussianBlur stdDeviation="5 0"/></filter>
+  <filter id="mb-x-5" x="-40%" y="-20%" width="180%" height="140%"><feGaussianBlur stdDeviation="7.5 0"/></filter>
+  <filter id="mb-x-6" x="-40%" y="-20%" width="180%" height="140%"><feGaussianBlur stdDeviation="11 0"/></filter>
+</defs></svg>
+
+<!-- ══ preloader ══ -->
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader__inner">
+    <div class="loader__mark"><img src="assets/logo.jpg" alt="" width="96" height="96"></div>
+    <div class="loader__bar"><i id="loaderFill"></i></div>
+    <div class="loader__num"><span id="loaderNum">00</span></div>
+  </div>
+  <div class="loader__veil"></div>
+</div>
+
+<!-- ══ fluid cursor (pointer devices only) ══ -->
+<div class="cursor" id="cursor" aria-hidden="true"><i></i><b></b></div>
+
+<!-- ══ nav ══ -->
+<header class="nav" id="nav">
+  <a class="nav__brand" href="#top" data-cursor="link">
+    <img class="nav__logo" src="assets/logo.jpg" alt="Sakura Japanese Cuisine" width="40" height="40">
+    <span class="nav__word">SAKURA</span>
+  </a>
+  <nav class="nav__links" aria-label="Primary">
+    <a href="#about" data-cursor="link">About</a>
+    <a href="menu.html" data-cursor="link">Menu</a>
+    <a href="#menu" data-cursor="link">All you can eat</a>
+    <a href="location.html" data-cursor="link">Find us</a>
+    <a href="contact.html" data-cursor="link">Contact</a>
+  </nav>
+  <a class="nav__cta btn btn--ghost" href="menu.html" data-cursor="link"><span>See the menu</span></a>
+  <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="overlay">
+    <i></i><i></i>
+  </button>
+</header>
+
+<!-- ══ fullscreen menu — circle-morph reveal anchored to the burger ══ -->
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+  <div class="overlay__bg"></div>
+  <nav class="overlay__nav">
+    <a href="#about"><em>01</em><span>About</span></a>
+    <a href="#menu"><em>02</em><span>Menu</span></a>
+    <a href="#craft"><em>03</em><span>The Sushi Bar</span></a>
+    <a href="#gallery"><em>04</em><span>Gallery</span></a>
+    <a href="location.html"><em>05</em><span>Find us</span></a>
+    <a href="contact.html"><em>06</em><span>Contact</span></a>
+  </nav>
+  <div class="overlay__meta">
+    <p data-site="address"></p>
+    <p><a data-site-href="tel" href="#"><span data-site="phone"></span></a></p>
+  </div>
+</div>
+
+<main id="main">
+<div id="top"></div>
+
+<!-- ═════════════ HERO ═════════════ -->
+<section class="hero" data-section data-tempo="largo" data-bg="#0b0b0d">
+  <canvas class="petals" id="petals" aria-hidden="true"></canvas>
+  <div class="hero__glow" data-speed="-0.06"></div>
+
+  <div class="hero__inner">
+    <p class="hero__eyebrow" data-anim data-split="chars">和食 — WINCHESTER, MASSACHUSETTS</p>
+
+    <h1 class="hero__title" data-blur="y">
+      <span class="hero__title-line" data-anim="cascade" data-split="chars" data-chars="lift">SAKURA</span>
+    </h1>
+
+    <div class="hero__rule" data-anim="wipe-x"></div>
+
+    <p class="hero__sub" data-anim data-split="lines">All-you-can-eat sushi.<br>Order by the sheet,<br>keep going.</p>
+
+    <div class="hero__actions" data-anim data-stagger>
+      <a class="btn btn--solid" href="menu.html" data-cursor="link"><span>See the menu</span></a>
+      <a class="btn btn--ghost" href="#menu" data-cursor="link"><span>All you can eat</span></a>
+    </div>
+  </div>
+
+  <!-- shared-element morph SOURCE: flows into the philosophy medallion on scroll -->
+  <div class="plate" id="morphFrom" data-speed="0.1" aria-hidden="true">
+    <div class="plate__ring"></div>
+    <img class="plate__img" src="assets/plate.jpg" alt="An assorted board of Sakura special rolls" width="900" height="900" fetchpriority="high">
+    <span class="plate__cap">寿司 · SUSHI</span>
+  </div>
+
+  <div class="hero__scroll" aria-hidden="true"><i></i><span>SCROLL</span></div>
+</section>
+
+<!-- ═════════════ RIBBON — speed + direction coupled to scroll velocity ═════════════ -->
+<section class="ribbon" data-section data-tempo="allegro" data-bg="#b2222b">
+  <div class="marquee" id="marquee" data-blur="x" aria-hidden="true">
+    <div class="marquee__track">
+      <span>ALL YOU CAN EAT</span><i>✳</i><span>食べ放題</span><i>✳</i><span>SUSHI &amp; KITCHEN</span><i>✳</i><span>持ち帰り</span><i>✳</i><span>DELIVERY</span><i>✳</i><span>SAKURA</span><i>✳</i>
+    </div>
+  </div>
+</section>
+
+<!-- morph seam: path shape AND fill colour interpolate between neighbouring sections -->
+<div class="seam" data-seam data-from="#b2222b" data-to="#f4efe6" aria-hidden="true">
+  <svg viewBox="0 0 1440 140" preserveAspectRatio="none"><path/></svg>
+</div>
+
+<!-- ═════════════ PHILOSOPHY ═════════════ -->
+<section class="philo" id="about" data-section data-tempo="largo" data-bg="#f4efe6">
+  <div class="philo__grid">
+    <!-- shared-element morph TARGET -->
+    <div class="philo__medallion" id="morphTo" aria-hidden="true"><img class="medallion__img" src="assets/medallion.jpg" alt="" width="900" height="900" loading="lazy"></div>
+
+    <div class="philo__text">
+      <p class="eyebrow" data-anim>01 — 町の食卓 / OUR TABLE</p>
+      <h2 class="h2" data-anim data-split="lines">Tick the box.<br>We will keep<br>bringing it.</h2>
+      <p class="lead" data-anim data-split="lines">Dining in works from an order sheet: tick what you want, in rounds, for as long as you are hungry. Maki, hand rolls, nigiri raw and cooked, special rolls, and the whole kitchen menu — tempura, teriyaki, curry, noodles and dessert — all on the one price.</p>
+      <ul class="philo__list" data-anim data-stagger>
+        <li><em>★ 4.1</em><span data-site="reviews"></span></li>
+        <li><em>食べ放題</em><span>Everything is all-you-can-eat, in store</span></li>
+        <li><em>野菜</em><span>Vegetarian marked throughout, and Wi-Fi</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="philo__kanji" data-speed="0.14" aria-hidden="true">和</div>
+</section>
+
+<!-- ═════════════ MENU ═════════════ -->
+<section class="menu" id="menu" data-section data-tempo="andante" data-bg="#f4efe6">
+  <div class="sec-head">
+    <p class="eyebrow" data-anim>02 — お品書き / THE MENU</p>
+    <h2 class="h2" data-anim data-split="lines">One price.<br>The whole sheet.</h2>
+  </div>
+
+  <div class="courses" data-anim data-stagger>
+    <article class="course" data-cursor="card">
+      <header><h3>Regular <em>並</em></h3><p class="course__price"><span data-site="ayceAdult"></span> adults</p></header>
+      <p>The full order sheet: maki raw and cooked, hand rolls, nigiri, special rolls, and every kitchen item — tempura, teriyaki, curry, noodles, dessert.</p>
+      <dl class="tiers">
+        <div><dt>Adults</dt><dd data-site="ayceAdult"></dd></div>
+        <div><dt>Child 10–12</dt><dd data-site="ayceChild"></dd></div>
+        <div><dt>Under 10</dt><dd data-site="ayceUnder10"></dd></div>
+      </dl>
+      <footer><span>Dine in</span><span>·</span><span>Order in rounds</span></footer>
+    </article>
+    <article class="course course--feature" data-cursor="card">
+      <div class="course__flag">Adds sashimi</div>
+      <header><h3>Deluxe <em>特上</em></h3><p class="course__price"><span data-site="deluxeAdult"></span> adults</p></header>
+      <p>Everything on the regular sheet, plus sashimi raw and cooked, octopus, white tuna, and yellowtail with scallion.</p>
+      <dl class="tiers">
+        <div><dt>Adults</dt><dd data-site="deluxeAdult"></dd></div>
+        <div><dt>Child 10–12</dt><dd data-site="deluxeChild"></dd></div>
+        <div><dt>Under 10</dt><dd data-site="deluxeUnder10"></dd></div>
+      </dl>
+      <footer><span>Dine in</span><span>·</span><span data-site="deluxeLimit"></span></footer>
+    </article>
+    <article class="course" data-cursor="card">
+      <header><h3>Takeout <em>出前</em></h3><p class="course__price" data-site="delivery"></p></header>
+      <p>All-you-can-eat is dine-in only. For takeout and delivery the same kitchen and sushi bar cook to order from the à la carte menu.</p>
+      <footer><span>Order online</span><span>·</span><span>Or call us</span></footer>
+    </article>
+  </div>
+
+  <div class="rider" data-anim data-stagger>
+    <p><b data-site="ayceSurcharge"></b></p>
+    <p data-site="wastePolicy"></p>
+    <p data-site="allergyNote"></p>
+  </div>
+
+  <div class="neta">
+    <p class="eyebrow" data-anim>All twenty-three special rolls</p>
+
+    <div class="rollcar" id="rollCar" data-anim="veil"
+         aria-roledescription="carousel" aria-label="The twenty-three Sakura special rolls">
+      <div class="rollcar__viewport">
+        <div class="rollcar__track" id="rollTrack">
+          <a class="rcard" href="menu.html#sakura-special-rolls" data-cursor="card">
+            <span class="rcard__media">
+              <span class="rcard__kind rcard__kind--raw">Raw</span>
+              <img src="assets/rolls/winchester.jpg" alt="Winchester roll" width="520" height="390">
+            </span>
+            <span class="rcard__name">Winchester</span>
+            <span class="rcard__desc">Spicy tuna with tuna, salmon, red snapper, avocado and tempura flakes on top.</span>
+          </a>
+          <a class="rcard" href="menu.html#sakura-special-rolls" data-cursor="card">
+            <span class="rcard__media">
+              <span class="rcard__kind rcard__kind--raw">Raw</span>
+              <img src="assets/rolls/sakura-ichiban.jpg" alt="Sakura Ichiban roll" width="520" height="390">
+            </span>
+            <span class="rcard__name">Sakura Ichiban</span>
+            <span class="rcard__desc">Spicy tuna wrapped in rice and fried seaweed, with crisp.</span>
+          </a>
+          <a class="rcard" href="menu.html#sakura-special-rolls" data-cursor="card">
+            <span class="rcard__media">
+              <span class="rcard__kind rcard__kind--raw">Raw</span>
+              <img src="assets/rolls/volcano.jpg" alt="Volcano roll" width="520" height="390">
+            </span>
+            <span class="rcard__name">Volcano</span>
+            <span class="rcard__desc">Spicy tuna tempura with baked tuna, salmon and white fish on top.</span>
+          </a>
+          <a class="rcard" href="menu.html#sakura-special-rolls" data-cursor="card">
+            <span class="rcard__media">
+              <span class="rcard__kind rcard__kind--raw">Raw</span>
+              <img src="assets/rolls/christmas.jpg" alt="Christmas roll" width="520" height="390">
+            </span>
+            <span class="rcard__name">Christmas</span>
+            <span class="rcard__desc">Shrimp tempura covered with tuna, avocado and tempura flakes.</span>
+          </a>
+          <a class="rcard" href="menu.html#sakura-special-rolls" data-cursor="card">
+            <span class="rcard__media">
+              <span class="rcard__kind rcard__kind--raw">Raw</span>
+              <img src="assets/rolls/fire.jpg" alt="Fire roll" width="520" height="390">
+            </span>
+            <span class="rcard__name">Fire</span>
+            <span class="rcard__desc">Shrimp tempura with spicy red tuna.</span>
+          </a>
+          <a class="rcard" href="menu.html#sakura-special-rolls" data-cursor="card">
+            <span class="rcard__media">
+              <span class="rcard__kind rcard__kind--raw">Raw</span>
+              <img src="assets/rolls/hunk.jpg" alt="Hunk roll" width="520" height="390">
+            </span>
+            <span class="rcard__name">Hunk</span>
+            <span class="rcard__desc">Shrimp tempura with asparagus, topped with red snapper.</span>
+          </a>
+          <a class="rcard" href="menu.html#sakura-special-rolls" data-cursor="card">
+            <span class="rcard__media">
+              <span class="rcard__kind rcard__kind--raw">Raw</span>
+              <img src="assets/rolls/phoenix.jpg" alt="Phoenix roll" width="520" height="390">
+            </span>
+            <span class="rcard__name">Phoenix</span>
+            <span class="rcard__desc">Yellowtail tuna in mayo and caviar, in tempura with red, green and black tobiko.</span>
+          </a>
+          <a class="rcard" href="menu.html#sakura-special-rolls" data-cursor="card">
+            <span class="rcard__media">
+              <span class="rcard__kind rcard__kind--raw">Raw</span>
+              <img src="assets/rolls/spicy2in1.jpg" alt="Spicy 2 in 1 roll" width="520" height="390">
+            </span>
+            <span class="rcard__name">Spicy 2 in 1</span>
+            <span class="rcard__desc">Spicy tuna covered with spicy yellowtail and tempura flakes.</span>
+          </a>
+          <a class="rcard" href="menu.html#sakura-special-rolls" data-cursor="card">
+            <span class="rcard__media">
+              <span class="rcard__kind rcard__kind--raw">Raw</span>
+              <img src="assets/rolls/sweetheart.jpg" alt="Sweetheart roll" width="520" height="390">
+            </span>
+            <span class="rcard__name">Sweetheart</span>
+            <span class="rcard__desc">Snow crab, avocado and scallion, with spicy tuna on top.</span>
+          </a>
+          <a class="rcard" href="menu.html#sakura-special-rolls" data-cursor="card">
+            <span class="rcard__media">
+              <span class="rcard__kind rcard__kind--raw">Raw</span>
+              <img src="assets/rolls/salmon-avocado.jpg" alt="Salmon, Avocado & Mayo roll" width="520" height="390">
+            </span>
+            <span class="rcard__name">Salmon, Avocado & Mayo</span>
+            <span class="rcard__desc">With crisp.</span>
+          </a>
+          <a class="rcard" href="menu.html#sakura-special-rolls" data-cursor="card">
+            <span class="rcard__media">
+              <span class="rcard__kind rcard__kind--cooked">Cooked</span>
+              <img src="assets/rolls/house-dragon.jpg" alt="House Dragon roll" width="520" height="390">
+            </span>
+            <span class="rcard__name">House Dragon</span>
+            <span class="rcard__desc">Shrimp tempura and crab stick, topped with eel, avocado and tobiko.</span>
+          </a>
+          <a class="rcard" href="menu.html#sakura-special-rolls" data-cursor="card">
+            <span class="rcard__media">
+              <span class="rcard__kind rcard__kind--cooked">Cooked</span>
+              <img src="assets/rolls/snow-mountain.jpg" alt="Snow Mountain roll" width="520" height="390">
+            </span>
+            <span class="rcard__name">Snow Mountain</span>
+            <span class="rcard__desc">Shrimp tempura, eel, crab meat and mayo.</span>
+          </a>
+          <a class="rcard" href="menu.html#sakura-special-rolls" data-cursor="card">
+            <span class="rcard__media">
+              <span class="rcard__kind rcard__kind--cooked">Cooked</span>
+              <img src="assets/rolls/tokyo.jpg" alt="Tokyo roll" width="520" height="390">
+            </span>
+            <span class="rcard__name">Tokyo</span>
+            <span class="rcard__desc">Shrimp tempura topped with filet mignon and special sauce.</span>
+          </a>
+          <a class="rcard" href="menu.html#sakura-special-rolls" data-cursor="card">
+            <span class="rcard__media">
+              <span class="rcard__kind rcard__kind--cooked">Cooked</span>
+              <img src="assets/rolls/rocknroll.jpg" alt="Rock'n Roll roll" width="520" height="390">
+            </span>
+            <span class="rcard__name">Rock'n Roll</span>
+            <span class="rcard__desc">Fish tempura with cheese and spicy mayo.</span>
+          </a>
+          <a class="rcard" href="menu.html#sakura-special-rolls" data-cursor="card">
+            <span class="rcard__media">
+              <span class="rcard__kind rcard__kind--cooked">Cooked</span>
+              <img src="assets/rolls/alligator.jpg" alt="Alligator roll" width="520" height="390">
+            </span>
+            <span class="rcard__name">Alligator</span>
+            <span class="rcard__desc">Shrimp tempura, eel and avocado.</span>
+          </a>
+          <a class="rcard" href="menu.html#sakura-special-rolls" data-cursor="card">
+            <span class="rcard__media">
+              <span class="rcard__kind rcard__kind--cooked">Cooked</span>
+              <img src="assets/rolls/angel.jpg" alt="Angel roll" width="520" height="390">
+            </span>
+            <span class="rcard__name">Angel</span>
+            <span class="rcard__desc">Shrimp tempura covered with mango and special sauce.</span>
+          </a>
+          <a class="rcard" href="menu.html#sakura-special-rolls" data-cursor="card">
+            <span class="rcard__media">
+              <span class="rcard__kind rcard__kind--cooked">Cooked</span>
+              <img src="assets/rolls/obama.jpg" alt="Obama roll" width="520" height="390">
+            </span>
+            <span class="rcard__name">Obama</span>
+            <span class="rcard__desc">Snow crab and avocado, with eel on top.</span>
+          </a>
+          <a class="rcard" href="menu.html#sakura-special-rolls" data-cursor="card">
+            <span class="rcard__media">
+              <span class="rcard__kind rcard__kind--cooked">Cooked</span>
+              <img src="assets/rolls/rising-sun.jpg" alt="Rising Sun roll" width="520" height="390">
+            </span>
+            <span class="rcard__name">Rising Sun</span>
+            <span class="rcard__desc">Deep-fried salmon.</span>
+          </a>
+          <a class="rcard" href="menu.html#sakura-special-rolls" data-cursor="card">
+            <span class="rcard__media">
+              <span class="rcard__kind rcard__kind--cooked">Cooked</span>
+              <img src="assets/rolls/mango-crab.jpg" alt="Mango & Crab Meat roll" width="520" height="390">
+            </span>
+            <span class="rcard__name">Mango & Crab Meat</span>
+            <span class="rcard__desc">Crab meat with mango.</span>
+          </a>
+          <a class="rcard" href="menu.html#sakura-special-rolls" data-cursor="card">
+            <span class="rcard__media">
+              <span class="rcard__kind rcard__kind--cooked">Cooked</span>
+              <img src="assets/rolls/honey.jpg" alt="Honey roll" width="520" height="390">
+            </span>
+            <span class="rcard__name">Honey</span>
+            <span class="rcard__desc">Sweet potato tempura with cucumber.</span>
+          </a>
+          <a class="rcard" href="menu.html#sakura-special-rolls" data-cursor="card">
+            <span class="rcard__media">
+              <span class="rcard__kind rcard__kind--cooked">Cooked</span>
+              <img src="assets/rolls/fruit.jpg" alt="Fruit roll" width="520" height="390">
+            </span>
+            <span class="rcard__name">Fruit</span>
+            <span class="rcard__desc">Cucumber, banana and mango with special sauce.</span>
+          </a>
+          <a class="rcard" href="menu.html#sakura-special-rolls" data-cursor="card">
+            <span class="rcard__media">
+              <span class="rcard__kind rcard__kind--cooked">Cooked</span>
+              <img src="assets/rolls/eel-avocado.jpg" alt="Eel & Avocado roll" width="520" height="390">
+            </span>
+            <span class="rcard__name">Eel & Avocado</span>
+            <span class="rcard__desc">With crisp.</span>
+          </a>
+          <a class="rcard" href="menu.html#sakura-special-rolls" data-cursor="card">
+            <span class="rcard__media">
+              <span class="rcard__kind rcard__kind--cooked">Cooked</span>
+              <img src="assets/rolls/salmon-skin.jpg" alt="Salmon Skin & Cooked Salmon roll" width="520" height="390">
+            </span>
+            <span class="rcard__name">Salmon Skin & Cooked Salmon</span>
+            <span class="rcard__desc">With crisp.</span>
+          </a>
+        </div>
+      </div>
+      <div class="rollcar__ui">
+        <p class="rollcar__count" id="rollCount">1 – 5 of 23</p>
+        <div class="rollcar__bar" aria-hidden="true"><i></i></div>
+        <div class="rollcar__nav">
+          <button type="button" data-dir="-1" aria-label="Previous rolls" data-cursor="link">&#8592;</button>
+          <button type="button" data-dir="1" aria-label="Next rolls" data-cursor="link">&#8594;</button>
+        </div>
+      </div>
+    </div>
+
+    <p class="note" data-anim>All twenty-three are included in the buffet price, raw and cooked — every one of them, with the other 217 dishes, is on <a href="menu.html" data-cursor="link">the full menu</a>. <span data-site="allergyNote"></span></p>
+  </div>
+</section>
+
+<div class="seam" data-seam data-from="#f4efe6" data-to="#0b0b0d" aria-hidden="true">
+  <svg viewBox="0 0 1440 140" preserveAspectRatio="none"><path/></svg>
+</div>
+
+<!-- ═════ PHOTO BAND — the restaurant's own photograph, shown at its real
+     aspect ratio rather than cropped into a shape it was never framed for ═════ -->
+<section class="band" data-section data-tempo="andante" data-bg="#0b0b0d" aria-label="Sushi at Sakura">
+  <div class="band__frame" data-anim="bleed" data-blur="y">
+    <img class="band__img" src="assets/sushi-platter.jpg" alt="A wooden board of nigiri and maki at Sakura" width="1366" height="410" loading="lazy" data-speed="0.05">
+  </div>
+  <p class="band__cap" data-anim data-split="lines">Cut to order at the bar.</p>
+</section>
+
+<!-- ═════════════ CRAFT ═════════════ -->
+<section class="craft" id="craft" data-section data-tempo="largo" data-bg="#0b0b0d">
+  <div class="craft__sticky">
+    <div class="craft__media" data-anim="iris" data-blur="y">
+      <img class="craft__shot is-on" data-craft-img="鮨" src="assets/craft/c1.jpg" alt="Nigiri pressed and plated" width="800" height="1000" loading="lazy">
+      <img class="craft__shot" data-craft-img="菜" src="assets/craft/c2.jpg" alt="A table of small dishes and greens" width="800" height="1000" loading="lazy">
+      <img class="craft__shot" data-craft-img="皿" src="assets/craft/c3.jpg" alt="A laid table in the dining room" width="800" height="1000" loading="lazy">
+      <div class="craft__grain"></div>
+      <div class="craft__cap"><span id="craftCap">鮨</span></div>
+    </div>
+  </div>
+  <div class="craft__steps">
+    <div class="craft__step" data-craft="鮨" data-anim data-stagger>
+      <em>鮨</em><h3>A real sushi bar</h3>
+      <p>Nigiri and rolls are cut and pressed when your sheet reaches the bar — not sitting under glass waiting for somebody to want them.</p>
+    </div>
+    <div class="craft__step" data-craft="菜" data-anim data-stagger>
+      <em>菜</em><h3>Room for everyone</h3>
+      <p>Vegetarian rolls and kitchen dishes run right through the menu, so nobody at the table ends up ordering around the edges.</p>
+    </div>
+    <div class="craft__step" data-craft="皿" data-anim data-stagger>
+      <em>皿</em><h3>Your pace, your table</h3>
+      <p>Everything off the bar is on the same all-you-can-eat price — maki, hand rolls, nigiri and the special rolls. Tick a round, then another. Nothing costs extra.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════ GALLERY — pinned horizontal drift, horizontal motion blur ═════════════ -->
+<section class="gal" id="gallery" data-section data-tempo="allegro" data-bg="#0b0b0d">
+  <div class="gal__pin">
+    <div class="gal__head">
+      <p class="eyebrow">04 — 店内 / THE ROOM</p>
+      <span class="gal__hint">drag or scroll</span>
+    </div>
+    <div class="gal__track" id="galTrack" data-blur="x">
+      <figure class="gal__card gal__card--photo" data-tone="a"><img class="gal__photo" src="assets/gallery/01-nigiri.jpg" alt="A wooden board of assorted maki and special rolls" width="900" height="1200" loading="lazy" decoding="async"><span>01</span><figcaption>A board, straight off the sheet</figcaption></figure>
+      <figure class="gal__card gal__card--photo" data-tone="b"><img class="gal__photo" src="assets/gallery/02-maki.jpg" alt="Cut maki rolls plated at the sushi bar" width="900" height="1200" loading="lazy" decoding="async"><span>02</span><figcaption>Maki, straight off the sheet</figcaption></figure>
+      <figure class="gal__card gal__card--photo" data-tone="c"><img class="gal__photo" src="assets/gallery/03-sashimi.jpg" alt="Sliced salmon sashimi lifted with chopsticks" width="900" height="1200" loading="lazy" decoding="async"><span>03</span><figcaption>Sashimi — on the deluxe sheet</figcaption></figure>
+      <figure class="gal__card gal__card--photo" data-tone="d"><img class="gal__photo" src="assets/gallery/04-tempura.jpg" alt="Prawn tempura in a bamboo basket" width="900" height="1200" loading="lazy" decoding="async"><span>04</span><figcaption>Tempura from the kitchen</figcaption></figure>
+      <figure class="gal__card gal__card--photo" data-tone="e"><img class="gal__photo" src="assets/gallery/05-udon.jpg" alt="A bowl of noodle soup with egg and scallion" width="900" height="1200" loading="lazy" decoding="async"><span>05</span><figcaption>Udon and noodle soup</figcaption></figure>
+      <figure class="gal__card gal__card--photo" data-tone="f"><img class="gal__photo" src="assets/gallery/06-boat.jpg" alt="An assorted sushi platter served on a wooden boat" width="900" height="1200" loading="lazy" decoding="async"><span>06</span><figcaption>Party boats for the table</figcaption></figure>
+    </div>
+    <div class="gal__bar"><i id="galBar"></i></div>
+  </div>
+</section>
+
+<!-- ═════════════ RESERVE ═════════════ -->
+<section class="res" id="reserve" data-section data-tempo="andante" data-bg="#0b0b0d">
+  <div class="res__grid">
+    <div class="res__left">
+      <p class="eyebrow" data-anim>05 — ご来店 / VISIT</p>
+      <h2 class="h2 h2--light" data-anim data-split="lines">Come in, or<br>we will come<br>to you.</h2>
+      <p class="lead lead--light" data-anim data-split="lines">Walk in and we will find you a table, or order online for pickup and delivery. For a large group or a particular time, send us the details below and we will call you back.</p>
+
+      <dl class="info" data-anim data-stagger>
+        <div><dt>Address</dt><dd data-site="address"></dd></div>
+        <div><dt>Telephone</dt><dd><a data-site-href="tel" href="#" data-cursor="link"><span data-site="phone"></span></a></dd></div>
+        <div><dt>Hours</dt><dd data-site="hours"></dd></div>
+        <div><dt>Price</dt><dd data-site="price"></dd></div>
+        <div><dt>Order</dt><dd><a data-site-href="order" href="#" target="_blank" rel="noopener" data-cursor="link">Order online ↗</a></dd></div>
+        <div><dt>Find us</dt><dd><a data-site-href="map" href="#" target="_blank" rel="noopener" data-cursor="link">Open in Maps ↗</a></dd></div>
+      </dl>
+    </div>
+
+    <form class="form" id="resForm" data-anim="veil" novalidate>
+      <div class="form__row">
+        <label class="field"><span>Name</span><input type="text" name="name" required autocomplete="name" placeholder=" "><i></i></label>
+        <label class="field"><span>Guests</span>
+          <select name="guests"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option value="12+">12 or more</option></select><i></i>
+        </label>
+      </div>
+      <div class="form__row">
+        <label class="field"><span>Date</span><input type="date" name="date" required><i></i></label>
+        <label class="field"><span>Time</span><input type="time" name="time" value="19:00" required><i></i>
+          <em class="field__hint" id="timeHint"></em>
+        </label>
+      </div>
+      <label class="field"><span>Email</span><input type="email" name="email" required autocomplete="email" placeholder=" "><i></i></label>
+      <label class="field"><span>Anything we should know?</span><textarea name="notes" rows="2" placeholder=" "></textarea><i></i></label>
+      <button class="btn btn--solid btn--wide" type="submit" data-cursor="link"><span>Request a table</span></button>
+      <p class="form__fine">We reply by email within one business day. <span data-site="bookingNote"></span></p>
+
+      <div class="form__done" aria-live="polite">
+        <div class="form__done-mark">✓</div>
+        <h4>Request received</h4>
+        <p>We will confirm by email shortly. If it is for tonight, please give us a call instead.</p>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ═════════════ FOOTER ═════════════ -->
+<footer class="foot" data-section data-tempo="largo" data-bg="#0b0b0d">
+  <div class="foot__mark" data-anim="cascade" data-split="chars" data-chars="lift">SAKURA</div>
+  <div class="foot__cols">
+    <div><h5>Visit</h5><p data-site="address"></p></div>
+    <div><h5>Hours</h5><p data-site="hours"></p></div>
+    <div><h5>Contact</h5><p><a data-site-href="tel" href="#" data-cursor="link"><span data-site="phone"></span></a><br><a data-site-href="mail" href="#" data-cursor="link"><span data-site="email"></span></a></p></div>
+    <div><h5>Online</h5><p><a data-site-href="web" href="#" target="_blank" rel="noopener" data-cursor="link"><span data-site="webLabel"></span> ↗</a><br><a data-site-href="ig" href="#" target="_blank" rel="noopener" data-cursor="link">Instagram ↗</a></p></div>
+  </div>
+  <div class="foot__base">
+    <span>© <span id="yr"></span> Sakura Japanese Restaurant, Winchester MA.</span>
+    <span class="foot__kanji">桜 · 和食レストラン</span>
+    <span class="foot__credit">Roll photography under CC BY / CC0 — Joe&nbsp;Bielawa, elsie.hui, ray_explores, rick, Clotee&nbsp;Pridgen&nbsp;Allochuku, Bigul&nbsp;Malayi.</span>
+  </div>
+</footer>
+
+</main>
+
+<script src="js/site.js"></script>
+<script src="js/motion.js"></script>
+</body>
+</html>
