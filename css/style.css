@@ -287,7 +287,7 @@ ul,ol{list-style:none;padding:0;margin:0}
 .hero__scroll i::after{content:"";position:absolute;inset:0;background:var(--sakura);animation:sweep 1956ms var(--ease-soft) infinite}
 @keyframes sweep{0%{transform:translateX(-100%)}60%,100%{transform:translateX(100%)}}
 
-/* the plate — morph source */
+/* the hero plate */
 .plate{position:absolute;right:calc(var(--pad) - 10px);top:50%;width:clamp(190px,26vw,340px);aspect-ratio:1;transform:translateY(-50%) translate3d(0,var(--py,0px),0);z-index:2;pointer-events:none;transition:opacity var(--t-8) var(--ease-soft)}
 .plate__ring{position:absolute;inset:0;border-radius:50%;background:
   radial-gradient(circle at 34% 28%,rgba(255,255,255,.14),rgba(255,255,255,0) 58%),
@@ -994,14 +994,4 @@ dl.info--light dd a:hover{color:var(--urushi);border-color:var(--urushi)}
 /* scroll lock while the overlay menu is open */
 html.is-locked{overflow:hidden}
 
-/* shared-element morph ghost: one object travelling between two slots */
-.morph{
-  position:fixed;top:0;left:0;width:300px;height:300px;
-  transform-origin:0 0;pointer-events:none;z-index:6;opacity:0;
-  transition:opacity var(--t-8) var(--ease-soft);
-  box-shadow:0 40px 90px rgba(0,0,0,.4);
-}
-.morph__a,.morph__b{position:absolute;inset:0;border-radius:inherit}
-.morph__a{background:url(../assets/plate.jpg) center/cover no-repeat}
-.morph__b{background:url(../assets/medallion.jpg) center/cover no-repeat}
-@media (prefers-reduced-motion:reduce){.morph{display:none}}
+

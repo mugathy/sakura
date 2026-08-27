@@ -10,7 +10,6 @@
      SPLIT      line + character splitting with masked arrivals
      BLUR       velocity-driven directional motion blur, quantised
      SEAM       path + colour morphing between sections
-     MORPH      shared-element FLIP morph, hero plate → philosophy medallion
      PIN        horizontal gallery with drag
      QUALITY    live fps sampling; drops effects before it drops frames
    ═══════════════════════════════════════════════════════════════════════════ */
@@ -488,45 +487,12 @@ onFrame(null, function (dt) {
   }
 });
 
-/* ══ 9. SHARED-ELEMENT MORPH ══════════════════════════════════════════════
-   The hero plate does not fade out and the medallion does not fade in —
-   one object travels, rescales and reshapes between the two slots. */
-var mFrom = $('#morphFrom'), mTo = $('#morphTo'), ghost = null;
-if (mFrom && mTo && !REDUCED) {
-  ghost = doc.createElement('div');
-  ghost.className = 'morph';
-  ghost.setAttribute('aria-hidden', 'true');
-  ghost.innerHTML = '<div class="morph__a"></div><div class="morph__b"></div>';
-  doc.body.appendChild(ghost);
-
-  var mState = -1;
-  onFrame(null, function () {
-    var a = mFrom.getBoundingClientRect(), b = mTo.getBoundingClientRect();
-    var vh = win.innerHeight;
-    /* 0 when the destination slot touches the bottom edge, 1 when it is
-       centred — so the object always finishes travelling on screen */
-    var end = vh * 0.5 - b.height * 0.5;
-    var p = clamp((vh - b.top) / Math.max(vh - end, 1), 0, 1);
-    var t = easeInOut(p);
-
-    var active = p > 0.001 && p < 0.999;
-    if (active !== (mState === 1)) {
-      mState = active ? 1 : 0;
-      ghost.style.opacity = active ? '1' : '0';
-      mFrom.style.opacity = active ? '0' : '1';
-      mTo.style.opacity   = active ? '0' : '1';
-    }
-    if (!active) return;
-
-    var w = lerp(a.width, b.width, t), h = lerp(a.height, b.height, t);
-    var x = lerp(a.left, b.left, t), y = lerp(a.top, b.top, t);
-    ghost.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0) scale(' + (w / 300).toFixed(4) + ',' + (h / 300).toFixed(4) + ')';
-    /* circle → petal, dark lacquer → pale washi */
-    ghost.style.borderRadius = '50% 50% 50% ' + lerp(50, 8, t).toFixed(1) + '%';
-    ghost.querySelector('.morph__b').style.opacity = t.toFixed(3);
-    ghost.querySelector('.morph__a').style.opacity = (1 - t).toFixed(3);
-  });
-}
+/* ══ 9. (removed) ═════════════════════════════════════════════════════════
+   There was a shared-element morph here that flew a ghost of the hero plate
+   down into the philosophy medallion. It travelled straight across the hero
+   headline on the way, which read as a glitch rather than a transition, so it
+   is gone. Both elements now simply hold their own photograph and the
+   medallion arrives with an ordinary entrance. */
 
 /* ══ 10. MARQUEE ══════════════════════════════════════════════════════════ */
 var marquee = $('#marquee');
