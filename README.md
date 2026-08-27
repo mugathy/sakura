@@ -34,32 +34,3 @@ Delivery 6:00 – 10:00 PM.
 
 Add $2 on Friday, Saturday, Sunday and holidays. Deluxe adds sashimi, octopus,
 white tuna and yellowtail with scallion.
-
----
-
-<details>
-
-```bash
-git add -A && git commit -m "what changed" && git push
-```
-
-GitHub Pages redeploys in about a minute.
-
-`menu.html`, `location.html` and `contact.html` are **generated** — do not edit
-them by hand. Change the data or the template, then rebuild:
-
-```bash
-node tools/build-menu.mjs     # after editing data/menu.json
-node tools/build-pages.mjs    # after editing tools/build-pages.mjs
-```
-
-All the real-world details — address, phone, email, hours, buffet prices — live
-in one file: **`js/site.js`**. Change them there and every page updates.
-
-To view it locally before pushing:
-
-```bash
-python -m http.server 5187
-```
-
-</details>
